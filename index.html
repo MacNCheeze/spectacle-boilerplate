@@ -7,6 +7,14 @@
   <link href="https://fonts.googleapis.com/css?family=Lobster+Two:400,700" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/prism/1.3.0/themes/prism-tomorrow.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.rawgit.com/knsv/mermaid/6.0.0/dist/mermaid.css">
+  <style type="text/css">
+    svg {
+      font-size: 0.45em;
+      /* TODO: Issue with https://github.com/knsv/mermaid/blob/master/src/diagrams/sequenceDiagram/sequenceRenderer.js#L490 */
+      max-width: 100% !important;
+    }
+  </style>
 </head>
 <body>
   <div id="root"></div>

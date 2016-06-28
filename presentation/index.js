@@ -19,8 +19,20 @@ import {
   Quote,
   Slide,
   Spectacle,
-  Text
+  Text,
+  Table,
+  TableRow,
+  TableItem,
+  TableHeaderItem
 } from "spectacle";
+
+//TODO: https://github.com/thejameskyle/spectacle-code-slide/pull/18
+import CodeSlide from "../custom/spectacle-code-slide/lib/index.js";
+
+//import Mermaid from "react-mermaid";
+//TODO: https://github.com/jasonbellamy/react-mermaid/issues/1
+//TODO: https://github.com/knsv/mermaid/issues/277
+import Mermaid from "../custom/react-mermaid/dist/react-mermaid.js";
 
 // Import image preloader util
 import preloader from "spectacle/lib/utils/preloader";
@@ -135,6 +147,85 @@ You can write inline images, [Markdown Links](http://commonmark.org), paragraph 
               `}
             </Markdown>
           </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+            <Heading caps fit size={1} textColor="primary">
+              External Markdown
+            </Heading>
+            <Markdown source={require("babel!template-string-loader!../assets/external.md")({images: images})}/>
+          </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+            <Heading caps fit size={1} textColor="primary">
+              External Markdown2
+            </Heading>
+            <Markdown source={require("raw!../assets/external2.md")}/>
+          </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="tertiary">
+            <Mermaid name="diagram1">
+graph LR;
+    A[Square Rect] -- Link text --> B((Circle));
+    A --> C(Round Rect);
+    B --> D;
+    C --> D;
+            </Mermaid>
+          </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="primary">
+            <Heading caps fit size={1} textColor="tertiary">
+              Mermaid Diagrams
+            </Heading>
+            <Mermaid name="diagram2">
+sequenceDiagram;
+    Alice->John: Hello John, how are you?;
+    loop Reply every minute;
+        John-->Alice: Great!;
+    end;
+            </Mermaid>
+          </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="primary">
+            <Mermaid name="diagram3">
+graph LR;
+    A[Hard edge] -->|Link text| B(Round edge);
+    B --> C((Decision));
+    C -->|One| D>Result one];
+    C -->|Two| E[Result two];
+            </Mermaid>
+          </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="primary">
+            <Mermaid name="diagram4">
+graph LR;
+    id1(Start)-->id2(Stop);
+    style id1 fill:#f9f,stroke:#333,stroke-width:4px;;
+    style id2 fill:#ccf,stroke:#f66,stroke-width:2px,stroke-dasharray: 5, 5;;
+            </Mermaid>
+          </Slide>
+          <Slide transition={["spin", "zoom"]} bgColor="primary">
+            <Mermaid name="diagram5">
+ graph TB;
+         subgraph one;
+         a1-->a2;
+         end;
+         subgraph two;
+         b1-->b2;
+         end;
+         subgraph three;
+         c1-->c2;
+         end;
+         c1-->a2;
+            </Mermaid>
+          </Slide>
+          <CodeSlide
+            transition={[]}
+            lang="js"
+            code={require("raw!../assets/deck.example")}
+            ranges={[
+              { loc: [0, 28], title: "Walking through some code" },
+              { loc: [0, 1], title: "The Beginning" },
+              { loc: [1, 2] },
+              { loc: [1, 2], note: "Heres a note!" },
+              { loc: [2, 3] },
+              { loc: [4, 7] },
+              { loc: [8, 10] },
+              // ...
+            ]}/>
           <Slide transition={["slide", "spin"]} bgColor="primary">
             <Heading caps fit size={1} textColor="tertiary">
               Smooth
